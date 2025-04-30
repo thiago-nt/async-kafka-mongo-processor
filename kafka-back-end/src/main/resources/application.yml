@@ -5,13 +5,14 @@ spring:
       group-id: grupo-teste
       auto-offset-reset: earliest
       enable-auto-commit: false
-      max-poll-records: 1500          # Lê até 1000 mensagens por poll
+      max-poll-records: 500          # Lê até 1000 mensagens por poll
       fetch-min-size: 1048576           # Lê no mínimo 50KB por poll
-      fetch-max-wait: 100              # Espera até 50ms para atingir o fetch-min-size
-      session.timeout.ms: 15000        # default é 10s, subir para 15s
-      max.poll.interval.ms: 300000     # até 5 minutos entre polls
+      fetch-min-bytes: 50000
+      fetch-max-wait: 50              # Espera até 50ms para atingir o fetch-min-size
+      session-timeout-ms: 15000        # default é 10s, subir para 15s
+      max-poll-interval-ms: 300000     # até 5 minutos entre polls
     listener:
-      concurrency: 10                 # 10 threads paralelas
+      concurrency: 12                 # 10 threads paralelas
   data:
     mongodb:
       uri: mongodb://localhost:27017/teste-performance
