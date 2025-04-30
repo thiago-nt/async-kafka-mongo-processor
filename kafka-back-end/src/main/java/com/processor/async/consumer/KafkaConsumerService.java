@@ -38,11 +38,8 @@ public class KafkaConsumerService {
         String threadName = Thread.currentThread().getName();
         threadsAtivas.add(threadName);
 
-        try {
-            Thread.sleep(2);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
+        DocumentMongo doc = new DocumentMongo(mensagem, Instant.now());
+        documentMongoRepository.save(doc);
 
         long duracao = System.currentTimeMillis() - inicio;
 
